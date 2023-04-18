@@ -1,7 +1,7 @@
 import React from "react";
 
 function App() {
-  const lista = [
+  const list = [
     { id: 123456789, task: "Estudar" },
     { id: 987654321, task: "Candidatar nas vagas" },
     {
@@ -23,8 +23,8 @@ function App() {
       <button onClick={buttonClick}>Adicionar</button>
 
       <ul>
-        {lista.map((item) => (
-          <li>{item.task}</li>
+        {list.map((item) => (
+          <li key={item.id}>{item.task}</li>
         ))}
       </ul>
     </div>
