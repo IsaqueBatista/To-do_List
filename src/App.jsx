@@ -1,15 +1,16 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 
 function App() {
   const list = [
-    { id: 123456789, task: "Estudar" },
-    { id: 987654321, task: "Candidatar nas vagas" },
+    { id: uuid(), task: "Estudar" },
+    { id: uuid(), task: "Candidatar nas vagas" },
     {
-      id: 1234598765,
+      id: uuid(),
       task: "Conversar e fechar com várias pessoas na Amakha Paris",
     },
   ];
-  // "Estudar", "Candidatar nas vagas", "Conversar e fechar com várias pessoas na Amakha Paris"
+
   function digitarInput(e) {
     console.log(e.target.value);
   }
