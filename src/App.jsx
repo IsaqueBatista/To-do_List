@@ -4,15 +4,14 @@ import { v4 as uuid } from "uuid";
 function App() {
   const [list, setList] = useState([{ id: uuid(), task: "Estudar" }]);
   const [inputTask, setInputTask] = useState("");
-  // Eu poderia deixar apenas task e setTask
 
   function digitarInput(e) {
     setInputTask(e.target.value);
   }
 
   function buttonClick() {
-    // E aqui chamar apenas o task, já que é o mesmo nome
-    setList([{ id: uuid(), task: inputTask }]);
+    setList([ ...list, { id: uuid(), task: inputTask }]);
+    // Com o spread operator eu consigo pegar todos os itens da lista e acrescentar um novo item com o inputTask
   }
 
   return (
