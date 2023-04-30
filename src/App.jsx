@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 
 function App() {
-
-  const [list, setList] = useState([{ id: uuid(), task: "Estudar" }])
-
+  const [list, setList] = useState([{ id: uuid(), task: "Estudar" }]);
+  const [inputTask, setInputTask] = useState("");
+  // Eu poderia deixar apenas task e setTask
 
   function digitarInput(e) {
-    setList([{ id: uuid(), task: e.target.value }])
-
+    setInputTask(e.target.value);
   }
+
   function buttonClick() {
-    console.log("buttin click ok");
+    // E aqui chamar apenas o task, já que é o mesmo nome
+    setList([{ id: uuid(), task: inputTask }]);
   }
 
   return (
