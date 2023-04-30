@@ -1,18 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 
 function App() {
-  const list = [
-    { id: uuid(), task: "Estudar" },
-    { id: uuid(), task: "Candidatar nas vagas" },
-    {
-      id: uuid(),
-      task: "Conversar e fechar com várias pessoas na Amakha Paris",
-    },
-  ];
+
+  const [list, setList] = useState([{ id: uuid(), task: "Estudar" }])
+
 
   function digitarInput(e) {
-    console.log(e.target.value);
+    setList([{ id: uuid(), task: e.target.value }])
+
   }
   function buttonClick() {
     console.log("buttin click ok");
