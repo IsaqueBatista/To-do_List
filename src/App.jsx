@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
+import { Container, ToDoList } from "./styles.js";
 
 function App() {
   const [list, setList] = useState([{ id: uuid(), task: "Estudar" }]);
@@ -10,21 +11,22 @@ function App() {
   }
 
   function buttonClick() {
-    setList([ ...list, { id: uuid(), task: inputTask }]);
-    // Com o spread operator eu consigo pegar todos os itens da lista e acrescentar um novo item com o inputTask
+    setList([...list, { id: uuid(), task: inputTask }]);
   }
 
   return (
-    <div>
-      <input onChange={digitarInput} placeholder="O que tenho que fazer..." />
-      <button onClick={buttonClick}>Adicionar</button>
+    <Container>
+      <ToDoList>
+        <input onChange={digitarInput} placeholder="O que tenho que fazer..." />
+        <button onClick={buttonClick}>Adicionar</button>
 
-      <ul>
-        {list.map((item) => (
-          <li key={item.id}>{item.task}</li>
-        ))}
-      </ul>
-    </div>
+        <ul>
+          {list.map((item) => (
+            <li key={item.id}>{item.task}</li>
+          ))}
+        </ul>
+      </ToDoList>
+    </Container>
   );
 }
 
