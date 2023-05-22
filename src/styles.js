@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { FaTrash } from "react-icons/fa"
-import { HiPencil } from "react-icons/hi"
+import { HiPencil } from "react-icons/hi" 
+import { AiOutlineBorder } from "react-icons/ai"
 
 
 export const Container = styled.div`
   background: linear-gradient(90deg, #383838 0%, #000000 81.25%);
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: roboto;
 `;
 
 export const ToDoList = styled.div`
@@ -66,6 +68,9 @@ export const Button = styled.button`
   font-weight: 400;
   font-size: 16px;
   line-height: 2px;
+
+  cursor: pointer;
+
 `;
 
 export const DivInput = styled.div`
@@ -140,6 +145,7 @@ export const ContainerStyledIconItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 3px;
 
 `; 
 
@@ -151,13 +157,13 @@ export const StyledIconFaTrash = styled(FaTrash)`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
 `; 
 
 export const StyledIconHiPencil = styled(HiPencil)`
   padding: 0 3px;
   color: #F4C433;
-  /* height: 15px; */
 
   height: 30px;
   width: 22px;
@@ -165,5 +171,52 @@ export const StyledIconHiPencil = styled(HiPencil)`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
+`;
+
+export const StyledIconAiOutlineBorder = styled(AiOutlineBorder)`
+  padding: 0 3px;
+  color: zinc;
+  height: 30px;
+  width: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+`;
+
+export const ContainerButtonRed = styled.div`
+  display: inline-flex;
+  width: 75%;
+  gap: 25px;
+  padding: 5px 15px;
+  font-weight: 600;
+`;
+
+
+export const ButtonRed = styled.button`
+  background: red;
+
+  /* text-decoration: line-through; */
+  background: #db3545;
+
+  border-radius: 5px;
+  width: 100%;
+  height: 35px;
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 2px;
+
+  cursor: pointer;
 
 `;

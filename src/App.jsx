@@ -16,6 +16,9 @@ import {
   ContainerStyledIconItem,
   StyledIconFaTrash,
   StyledIconHiPencil,
+  StyledIconAiOutlineBorder,
+  ContainerButtonRed,
+  ButtonRed
 } from "./styles.js";
 
 function App() {
@@ -61,6 +64,9 @@ function App() {
                 {item.task}
                 <ContainerStyledIconItem>
                   <div>
+                    <StyledIconAiOutlineBorder />
+                  </div>
+                  <div>
                     <StyledIconHiPencil />
                   </div>
                   <div>
@@ -71,6 +77,12 @@ function App() {
             ))}
           </ul>
         </List>
+
+        <ContainerButtonRed>
+          <ButtonRed onClick={buttonClick}>Delete done tasks</ButtonRed>
+          <ButtonRed onClick={buttonClick}>Delete all tasks</ButtonRed>
+        </ContainerButtonRed>
+
       </ToDoList>
     </Container>
   );
