@@ -1,6 +1,22 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { Container, ToDoList } from "./styles.js";
+
+import {
+  H1,
+  Container,
+  ContainerInput,
+  StyledIcon,
+  ToDoList,
+  DivInput,
+  Input,
+  Button,
+  ContainerButtonFilter,
+  List,
+  Item,
+  ContainerStyledIconItem,
+  StyledIconFaTrash,
+  StyledIconHiPencil,
+} from "./styles.js";
 
 function App() {
   const [list, setList] = useState([{ id: uuid(), task: "Estudar" }]);
@@ -17,14 +33,44 @@ function App() {
   return (
     <Container>
       <ToDoList>
-        <input onChange={digitarInput} placeholder="O que tenho que fazer..." />
-        <button onClick={buttonClick}>Adicionar</button>
+        <H1>TodoList</H1>
 
-        <ul>
-          {list.map((item) => (
-            <li key={item.id}>{item.task}</li>
-          ))}
-        </ul>
+        <ContainerInput>
+          <DivInput>
+            <StyledIcon />
+            <Input
+              onChange={digitarInput}
+              placeholder="O que tenho que fazer..."
+            />
+          </DivInput>
+          <Button onClick={buttonClick}>Adicionar</Button>
+        </ContainerInput>
+
+        <H1>Filter by</H1>
+
+        <ContainerButtonFilter>
+          <Button onClick={buttonClick}>All</Button>
+          <Button onClick={buttonClick}>Done</Button>
+          <Button onClick={buttonClick}>Todo</Button>
+        </ContainerButtonFilter>
+
+        <List>
+          <ul>
+            {list.map((item) => (
+              <Item key={item.id}>
+                {item.task}
+                <ContainerStyledIconItem>
+                  <div>
+                    <StyledIconHiPencil />
+                  </div>
+                  <div>
+                    <StyledIconFaTrash />
+                  </div>
+                </ContainerStyledIconItem>
+              </Item>
+            ))}
+          </ul>
+        </List>
       </ToDoList>
     </Container>
   );
