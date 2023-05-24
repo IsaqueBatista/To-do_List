@@ -92,6 +92,15 @@ function App() {
     }
   }
 
+  function deleteAll() {
+    setList([]);
+  }
+
+  function deleteCompleted() {
+    const updatedList = list.filter(item => !item.finished);
+    setList(updatedList);
+  }
+
   return (
     <Container>
       <ToDoList>
@@ -159,8 +168,8 @@ function App() {
         </List>
 
         <ContainerButtonRed>
-          <ButtonRed onClick={buttonClick}>Deletar realizados</ButtonRed>
-          <ButtonRed onClick={buttonClick}>Excluir tudo</ButtonRed>
+          <ButtonRed onClick={deleteCompleted}>Deletar realizados</ButtonRed>
+          <ButtonRed onClick={deleteAll}>Excluir tudo</ButtonRed>
         </ContainerButtonRed>
 
       </ToDoList>
