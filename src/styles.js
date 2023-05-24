@@ -62,7 +62,6 @@ export const InputField = styled.input`
   padding: 0px 2px;
 `;
 
-
 export const Button = styled.button`
   background: #16a3b7;
   border-radius: 5px;
@@ -137,9 +136,9 @@ export const Item = styled.li`
   margin-bottom: 2px;
   font-weight: 400;
   font-size: 15px;
-  
+
   span {
-    word-break: break-word; 
+    word-break: break-word;
   }
 
   text-decoration: ${(props) => (props.isFinished ? "line-through" : "none")};
@@ -161,7 +160,7 @@ export const ContainerStyledIconItem = styled.div`
   gap: 3px;
 `;
 
-export const StyledIconFaTrash = styled(FaTrash)`
+export const Trash = styled(FaTrash)`
   padding: 2px 3px;
   color: red;
   height: 15px;
@@ -172,7 +171,7 @@ export const StyledIconFaTrash = styled(FaTrash)`
   cursor: pointer;
 `;
 
-export const StyledIconHiPencil = styled(HiPencil)`
+export const Pencil = styled(HiPencil)`
   padding: 0 3px;
   color: #f4c433;
 
@@ -185,7 +184,7 @@ export const StyledIconHiPencil = styled(HiPencil)`
   cursor: pointer;
 `;
 
-export const StyledIconAiOutlineBorder = styled(AiOutlineBorder)`
+export const Check = styled(AiOutlineBorder)`
   padding: 0 3px;
   color: zinc;
   height: 30px;
@@ -228,4 +227,13 @@ export const ButtonRed = styled.button`
   line-height: 2px;
 
   cursor: pointer;
+`;
+
+export const MessageNotItem = styled.h3`
+  color: #FF7F00;
+  text-align: center;
+  border: 1px solid gray;
+  padding: 5px 2px;
+  border-radius: 4px;
+  font-weight: 500;
 `;

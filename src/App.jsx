@@ -14,31 +14,31 @@ import {
   List,
   Item,
   ContainerStyledIconItem,
-  StyledIconFaTrash,
-  StyledIconHiPencil,
-  StyledIconAiOutlineBorder,
+  Trash,
+  Pencil,
+  Check,
   ContainerButtonRed,
   ButtonRed,
-  InputField
+  InputField,
+  MessageNotItem
 } from "./styles.js";
 
 function App() {
-  const [list, setList] = useState([
-    { id: uuid(), task: "Estudar", finished: true },
-  ]);
+  const [list, setList] = useState([]);
   const [inputTask, setInputTask] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editingTask, setEditingTask] = useState("");
   const [filter, setFilter] = useState("all");
-
 
   function digitarInput(e) {
     setInputTask(e.target.value);
   }
 
   function buttonClick() {
-    setList([...list, { id: uuid(), task: inputTask, finished: false }]);
-    setInputTask("");
+    if(inputTask) {
+
+      setList([...list, { id: uuid(), task: inputTask, finished: false }]);
+    }
   }
 
   function taskCompleted(id) {
@@ -128,42 +128,43 @@ function App() {
 
         <List>
           <ul>
-          {filterList().map((item) => (
-              <Item isFinished={item.finished} key={item.id} >
-                {editingId === item.id ? (
-                  <InputField
-                    maxLength={40}
-                    value={editingTask}
-                    onChange={(e) => setEditingTask(e.target.value)
-                    }
-                  />
-                ) : (
-                  <span>{item.task}</span>
-                )}
-
-                <ContainerStyledIconItem>
-                  <div>
-                    <StyledIconAiOutlineBorder
-                      onClick={() => taskCompleted(item.id)}
-                    />
-                  </div>
+            {list.length > 0 ? (
+              filterList().map((item) => (
+                <Item isFinished={item.finished} key={item.id}>
                   {editingId === item.id ? (
-                    <div>
-                      <StyledIconHiPencil onClick={saveTask} />
-                    </div>
+                    <InputField
+                      maxLength={40}
+                      value={editingTask}
+                      onChange={(e) => setEditingTask(e.target.value)}
+                    />
                   ) : (
-                    <div>
-                      <StyledIconHiPencil
-                        onClick={() => startEditing(item.id, item.task)}
-                      />
-                    </div>
+                    <span>{item.task}</span>
                   )}
-                  <div>
-                    <StyledIconFaTrash onClick={() => deleteTask(item.id)} />
-                  </div>
-                </ContainerStyledIconItem>
-              </Item>
-            ))}
+
+                  <ContainerStyledIconItem>
+                    <div>
+                      <Check onClick={() => taskCompleted(item.id)} />
+                    </div>
+                    {editingId === item.id ? (
+                      <div>
+                        <Pencil onClick={saveTask} />
+                      </div>
+                    ) : (
+                      <div>
+                        <Pencil
+                          onClick={() => startEditing(item.id, item.task)}
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <Trash onClick={() => deleteTask(item.id)} />
+                    </div>
+                  </ContainerStyledIconItem>
+                </Item>
+              ))
+            ) : (
+              <MessageNotItem>Não há itens na lista</MessageNotItem>
+            )}
           </ul>
         </List>
 
@@ -171,7 +172,7 @@ function App() {
           <ButtonRed onClick={deleteCompleted}>Deletar realizados</ButtonRed>
           <ButtonRed onClick={deleteAll}>Excluir tudo</ButtonRed>
         </ContainerButtonRed>
-
+        
       </ToDoList>
     </Container>
   );
