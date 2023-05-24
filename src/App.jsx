@@ -29,6 +29,8 @@ function App() {
   const [inputTask, setInputTask] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [editingTask, setEditingTask] = useState("");
+  const [filter, setFilter] = useState("all");
+
 
   function digitarInput(e) {
     setInputTask(e.target.value);
@@ -68,6 +70,28 @@ function App() {
     setEditingTask("");
   }
 
+  function showAll() {
+    setFilter("all");
+  }
+
+  function showCompleted() {
+    setFilter("completed");
+  }
+
+  function showUncompleted() {
+    setFilter("uncompleted");
+  }
+
+  function filterList() {
+    if (filter === "completed") {
+      return list.filter(item => item.finished);
+    } else if (filter === "uncompleted") {
+      return list.filter(item => !item.finished);
+    } else {
+      return list;
+    }
+  }
+
   return (
     <Container>
       <ToDoList>
@@ -85,17 +109,17 @@ function App() {
           <Button onClick={buttonClick}>Adicionar</Button>
         </ContainerInput>
 
-        <H1>Filter by</H1>
+        <H1>Filtrar por</H1>
 
         <ContainerButtonFilter>
-          <Button onClick={buttonClick}>All</Button>
-          <Button onClick={buttonClick}>Done</Button>
-          <Button onClick={buttonClick}>Todo</Button>
+          <Button onClick={showAll}>Todos</Button>
+          <Button onClick={showCompleted}>Concluído</Button>
+          <Button onClick={showUncompleted}>A fazer</Button>
         </ContainerButtonFilter>
 
         <List>
           <ul>
-            {list.map((item) => (
+          {filterList().map((item) => (
               <Item isFinished={item.finished} key={item.id} >
                 {editingId === item.id ? (
                   <InputField
@@ -135,8 +159,8 @@ function App() {
         </List>
 
         <ContainerButtonRed>
-          <ButtonRed onClick={buttonClick}>Delete done tasks</ButtonRed>
-          <ButtonRed onClick={buttonClick}>Delete all tasks</ButtonRed>
+          <ButtonRed onClick={buttonClick}>Deletar realizados</ButtonRed>
+          <ButtonRed onClick={buttonClick}>Excluir tudo</ButtonRed>
         </ContainerButtonRed>
 
       </ToDoList>
