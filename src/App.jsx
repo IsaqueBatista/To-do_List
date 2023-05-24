@@ -22,7 +22,7 @@ import {
 } from "./styles.js";
 
 function App() {
-  const [list, setList] = useState([{ id: uuid(), task: "Estudar" }]);
+  const [list, setList] = useState([{ id: uuid(), task: "Estudar", finished: true }]);
   const [inputTask, setInputTask] = useState("");
 
   function digitarInput(e) {
@@ -30,7 +30,15 @@ function App() {
   }
 
   function buttonClick() {
-    setList([...list, { id: uuid(), task: inputTask }]);
+    setList([...list, { id: uuid(), task: inputTask, finished: false }]);
+  }
+
+  function taskCompleted(id) {
+    const newList = list.map(item => (
+      item.id === id ? {...item, finished: !item.finished} : item
+    ))
+
+    setList(newList)
   }
 
   return (
@@ -60,11 +68,11 @@ function App() {
         <List>
           <ul>
             {list.map((item) => (
-              <Item key={item.id}>
+              <Item isFinished={item.finished} key={item.id}>
                 {item.task}
                 <ContainerStyledIconItem>
                   <div>
-                    <StyledIconAiOutlineBorder />
+                    <StyledIconAiOutlineBorder onClick={() => taskCompleted(item.id)}/>
                   </div>
                   <div>
                     <StyledIconHiPencil />

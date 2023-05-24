@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { HiOutlineNewspaper } from "react-icons/hi";
-import { FaTrash } from "react-icons/fa"
-import { HiPencil } from "react-icons/hi" 
-import { AiOutlineBorder } from "react-icons/ai"
-
+import { HiOutlineNewspaper, HiPencil } from "react-icons/hi";
+import { FaTrash } from "react-icons/fa";
+import { AiOutlineBorder } from "react-icons/ai";
 
 export const Container = styled.div`
   background: linear-gradient(90deg, #383838 0%, #000000 81.25%);
@@ -70,7 +68,6 @@ export const Button = styled.button`
   line-height: 2px;
 
   cursor: pointer;
-
 `;
 
 export const DivInput = styled.div`
@@ -119,7 +116,6 @@ export const List = styled.div`
     flex-direction: column;
     gap: 5px;
   }
-
 `;
 
 export const Item = styled.li`
@@ -127,16 +123,17 @@ export const Item = styled.li`
   padding: 5px;
   border-radius: 4px;
   margin-bottom: 2px;
-
   font-weight: 400;
-  font-size: 15px;  
+  font-size: 15px;
+
+  text-decoration: ${(props) => (props.isFinished ? "line-through" : "none")};
+  color: ${(props) => (props.isFinished ? "#db3545" : "zinc")};
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 `;
-
 
 export const ContainerStyledIconItem = styled.div`
   padding: 2px 3px;
@@ -146,8 +143,7 @@ export const ContainerStyledIconItem = styled.div`
   justify-content: center;
   align-items: center;
   gap: 3px;
-
-`; 
+`;
 
 export const StyledIconFaTrash = styled(FaTrash)`
   padding: 2px 3px;
@@ -158,12 +154,11 @@ export const StyledIconFaTrash = styled(FaTrash)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
-`; 
+`;
 
 export const StyledIconHiPencil = styled(HiPencil)`
   padding: 0 3px;
-  color: #F4C433;
+  color: #f4c433;
 
   height: 30px;
   width: 22px;
@@ -172,7 +167,6 @@ export const StyledIconHiPencil = styled(HiPencil)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-
 `;
 
 export const StyledIconAiOutlineBorder = styled(AiOutlineBorder)`
@@ -186,6 +180,7 @@ export const StyledIconAiOutlineBorder = styled(AiOutlineBorder)`
   align-items: center;
   cursor: pointer;
 
+  /* color: ${(props) => (props.isFinished ? "green" : "zinc")}; */
 `;
 
 export const ContainerButtonRed = styled.div`
@@ -195,7 +190,6 @@ export const ContainerButtonRed = styled.div`
   padding: 5px 15px;
   font-weight: 600;
 `;
-
 
 export const ButtonRed = styled.button`
   background: red;
@@ -218,5 +212,4 @@ export const ButtonRed = styled.button`
   line-height: 2px;
 
   cursor: pointer;
-
 `;
