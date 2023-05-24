@@ -41,6 +41,11 @@ function App() {
     setList(newList)
   }
 
+  function deleteTask(id) {
+    const updatedItems = list.filter((item) => item.id !== id);
+    setList(updatedItems);
+  }
+
   return (
     <Container>
       <ToDoList>
@@ -78,7 +83,7 @@ function App() {
                     <StyledIconHiPencil />
                   </div>
                   <div>
-                    <StyledIconFaTrash />
+                    <StyledIconFaTrash onClick={() => deleteTask(item.id)}/>
                   </div>
                 </ContainerStyledIconItem>
               </Item>
