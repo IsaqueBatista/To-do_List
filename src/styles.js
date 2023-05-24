@@ -79,6 +79,13 @@ export const Button = styled.button`
   line-height: 2px;
 
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 1;
+  }
 `;
 
 export const DivInput = styled.div`
@@ -207,9 +214,6 @@ export const ContainerButtonRed = styled.div`
 `;
 
 export const ButtonRed = styled.button`
-  background: red;
-
-  /* text-decoration: line-through; */
   background: #db3545;
 
   border-radius: 5px;
@@ -227,13 +231,20 @@ export const ButtonRed = styled.button`
   line-height: 2px;
 
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 1;
+  }
 `;
 
 export const MessageNotItem = styled.h3`
-  color: #FF7F00;
+  color: #aaaaaa;
   text-align: center;
   border: 1px solid gray;
   padding: 5px 2px;
   border-radius: 4px;
-  font-weight: 500;
+  font-weight: 400;
 `;
