@@ -18,12 +18,17 @@ import {
   StyledIconHiPencil,
   StyledIconAiOutlineBorder,
   ContainerButtonRed,
-  ButtonRed
+  ButtonRed,
+  InputField
 } from "./styles.js";
 
 function App() {
-  const [list, setList] = useState([{ id: uuid(), task: "Estudar", finished: true }]);
+  const [list, setList] = useState([
+    { id: uuid(), task: "Estudar", finished: true },
+  ]);
   const [inputTask, setInputTask] = useState("");
+  const [editingId, setEditingId] = useState(null);
+  const [editingTask, setEditingTask] = useState("");
 
   function digitarInput(e) {
     setInputTask(e.target.value);
@@ -31,19 +36,36 @@ function App() {
 
   function buttonClick() {
     setList([...list, { id: uuid(), task: inputTask, finished: false }]);
+    setInputTask("");
   }
 
   function taskCompleted(id) {
-    const newList = list.map(item => (
-      item.id === id ? {...item, finished: !item.finished} : item
-    ))
-
-    setList(newList)
+    const newList = list.map((item) =>
+      item.id === id ? { ...item, finished: !item.finished } : item
+    );
+    setList(newList);
   }
 
   function deleteTask(id) {
-    const updatedItems = list.filter((item) => item.id !== id);
-    setList(updatedItems);
+    const newList = list.filter((item) => item.id !== id);
+    setList(newList);
+  }
+
+  function startEditing(id, task) {
+    setEditingId(id);
+    setEditingTask(task);
+  }
+
+  function saveTask() {
+    const newList = list.map((item) => {
+      if (item.id === editingId) {
+        return { ...item, task: editingTask };
+      }
+      return item;
+    });
+    setList(newList);
+    setEditingId(null);
+    setEditingTask("");
   }
 
   return (
@@ -55,6 +77,7 @@ function App() {
           <DivInput>
             <StyledIcon />
             <Input
+              value={inputTask}
               onChange={digitarInput}
               placeholder="O que tenho que fazer..."
             />
@@ -73,17 +96,37 @@ function App() {
         <List>
           <ul>
             {list.map((item) => (
-              <Item isFinished={item.finished} key={item.id}>
-                {item.task}
+              <Item isFinished={item.finished} key={item.id} >
+                {editingId === item.id ? (
+                  <InputField
+                    maxLength={40}
+                    value={editingTask}
+                    onChange={(e) => setEditingTask(e.target.value)
+                    }
+                  />
+                ) : (
+                  <span>{item.task}</span>
+                )}
+
                 <ContainerStyledIconItem>
                   <div>
-                    <StyledIconAiOutlineBorder onClick={() => taskCompleted(item.id)}/>
+                    <StyledIconAiOutlineBorder
+                      onClick={() => taskCompleted(item.id)}
+                    />
                   </div>
+                  {editingId === item.id ? (
+                    <div>
+                      <StyledIconHiPencil onClick={saveTask} />
+                    </div>
+                  ) : (
+                    <div>
+                      <StyledIconHiPencil
+                        onClick={() => startEditing(item.id, item.task)}
+                      />
+                    </div>
+                  )}
                   <div>
-                    <StyledIconHiPencil />
-                  </div>
-                  <div>
-                    <StyledIconFaTrash onClick={() => deleteTask(item.id)}/>
+                    <StyledIconFaTrash onClick={() => deleteTask(item.id)} />
                   </div>
                 </ContainerStyledIconItem>
               </Item>

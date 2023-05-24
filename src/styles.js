@@ -51,6 +51,18 @@ export const Input = styled.input`
   padding: 0px 2px;
 `;
 
+export const InputField = styled.input`
+  border-radius: 0 4px 4px 0;
+  border: none;
+  height: 40px;
+  width: 100%;
+  background: bisque;
+
+  font-size: 15px;
+  padding: 0px 2px;
+`;
+
+
 export const Button = styled.button`
   background: #16a3b7;
   border-radius: 5px;
@@ -125,6 +137,10 @@ export const Item = styled.li`
   margin-bottom: 2px;
   font-weight: 400;
   font-size: 15px;
+  
+  span {
+    word-break: break-word; 
+  }
 
   text-decoration: ${(props) => (props.isFinished ? "line-through" : "none")};
   color: ${(props) => (props.isFinished ? "#db3545" : "zinc")};
