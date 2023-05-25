@@ -16,6 +16,8 @@
 
 <br>
 
+---
+
  O projeto "Lista de Tarefas" é uma aplicação web desenvolvida utilizando React, JavaScript, React Icons, Styled Components e a biblioteca UUID. A aplicação tem como objetivo permitir que os usuários criem e gerenciem suas listas de tarefas de forma fácil e intuitiva.
 
  ---
